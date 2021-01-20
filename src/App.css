@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,4 +35,30 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.App-button {
+  height: 10vh;
+  background-color: #282c34;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  color: #444444;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  background: lightgreen;
+  border: 3px solid #424344;
+  border-radius: 30px;
+}
+
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  /*Button disabled - CSS color class*/
+  color: #e4e4e4;
+  background-color: #b8b8b8;
+  border: 3px solid #424344;
 }
