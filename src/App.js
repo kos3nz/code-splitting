@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import AsyncComponent from "./components/AsyncComponent";
 import Page1 from "./components/Page1";
 
 class App extends React.Component {
@@ -7,29 +8,22 @@ class App extends React.Component {
     super();
     this.state = {
       route: "page1",
-      Component: "",
     };
   }
 
   onRouteChange = (route) => {
-    if (route === "page1") {
-      this.setState({ route: route });
-    } else if (route === "page2") {
-      import("./components/Page2").then((Page2) => {
-        this.setState({ route: route, Component: Page2.default });
-      });
-    } else if (route === "page3") {
-      import("./components/Page3").then((Page3) => {
-        this.setState({ route: route, Component: Page3.default });
-      });
-    }
+    this.setState({ route: route });
   };
 
   render() {
     if (this.state.route === "page1") {
       return <Page1 onRouteChange={this.onRouteChange} />;
-    } else {
-      return <this.state.Component onRouteChange={this.onRouteChange} />;
+    } else if (this.state.route === "page2") {
+      const AsyncPage2 = AsyncComponent(() => import("./components/Page2"));
+      return <AsyncPage2 onRouteChange={this.onRouteChange} />;
+    } else if (this.state.route === "page3") {
+      const AsyncPage3 = AsyncComponent(() => import("./components/Page3"));
+      return <AsyncPage3 onRouteChange={this.onRouteChange} />;
     }
   }
 }
